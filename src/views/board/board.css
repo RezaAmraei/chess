@@ -1,0 +1,31 @@
+.boardRow {
+  height: 100px;
+  width: 800px;
+  display: flex;
+}
+
+.boardSpot {
+  height: 100px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #000000;
+}
+
+.light {
+  background-color: #ba5b3d;
+}
+
+.dark {
+  background-color: #000000;
+}
+
+#green {
+  background-color: #79ec7d;
+}
+
+.piece {
+  border: 1px solid red;
+  cursor: pointer;
+}/*# sourceMappingURL=board.css.map */

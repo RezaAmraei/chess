@@ -1,0 +1,31 @@
+@import "../../variable.scss";
+
+.boardRow {
+  height: 100px;
+  width: 800px;
+  display: flex;
+}
+
+.boardSpot {
+  height: 100px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $darkBoardPiece;
+}
+
+.light {
+  background-color: $lightBoardPiece;
+}
+.dark {
+  background-color: $darkBoardPiece;
+}
+#green {
+  background-color: $possibleMove;
+  //z-index: -1;
+}
+.piece {
+  border: 1px solid red;
+  cursor: pointer;
+}
