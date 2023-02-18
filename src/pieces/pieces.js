@@ -12,7 +12,7 @@ const canMoveNorth = (arr, i, j) => {
   const oneIndexUp = arr[i - 1];
   while (i >= 0) {
     if (oneIndexUp && oneIndexUp[j] === null) oneIndexUp[j] = 1;
-    else if (oneIndexUp && oneIndexUp[j] && oneIndexUp[j].color == "#565352") {
+    else if (oneIndexUp && oneIndexUp[j] && oneIndexUp[j].color === "#565352") {
       oneIndexUp[j] = 1;
       break;
     } else if (oneIndexUp && oneIndexUp[j] !== null) break;
@@ -33,16 +33,24 @@ const pawnMovement = function (arr, i, j, pawn) {
 
 const pawnCanMove = (arr, i, j) => {
   const oneIndexUp = arr[i - 1];
-  if (oneIndexUp && oneIndexUp[j] == null) {
+  if (oneIndexUp && oneIndexUp[j] === null) {
     oneIndexUp[j] = 1;
   }
-  if (i == 6 && arr[i - 2][j] == null) arr[i - 2][j] = 1;
-  if (oneIndexUp && oneIndexUp[j - 1] && oneIndexUp[j - 1].color == "#565352") {
+  if (i === 6 && arr[i - 2][j] === null) arr[i - 2][j] = 1;
+  if (
+    oneIndexUp &&
+    oneIndexUp[j - 1] &&
+    oneIndexUp[j - 1].color === "#565352"
+  ) {
     console.log(oneIndexUp[j - 1]);
-    oneIndexUp[j - 1] = 1;
+    oneIndexUp[j - 1].danger = true;
   }
-  if (oneIndexUp && oneIndexUp[j + 1] && oneIndexUp[j + 1].color == "#565352") {
-    oneIndexUp[j + 1] = 1;
+  if (
+    oneIndexUp &&
+    oneIndexUp[j + 1] &&
+    oneIndexUp[j + 1].color === "#565352"
+  ) {
+    oneIndexUp[j + 1].danger = true;
   }
 
   return [...arr];

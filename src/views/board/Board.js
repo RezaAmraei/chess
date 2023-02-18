@@ -12,7 +12,15 @@ const Board = () => {
   const queenUser = queen("#dfdfdf");
   const kingUser = king("#dfdfdf");
 
-  const pawnOpp = pawn("#565352");
+  const pawnOppA8 = pawn("#565352");
+  const pawnOppB8 = pawn("#565352");
+  const pawnOppC8 = pawn("#565352");
+  const pawnOppD8 = pawn("#565352");
+  const pawnOppE8 = pawn("#565352");
+  const pawnOppF8 = pawn("#565352");
+  const pawnOppG8 = pawn("#565352");
+  const pawnOppH8 = pawn("#565352");
+
   const rookOpp = rook("#565352");
   const bishopOpp = bishop("#565352");
   const knightOpp = knight("#565352");
@@ -30,7 +38,16 @@ const Board = () => {
       knightOpp,
       rookOpp,
     ],
-    [pawnOpp, pawnOpp, pawnOpp, pawnOpp, pawnOpp, pawnOpp, pawnOpp, pawnOpp],
+    [
+      pawnOppA8,
+      pawnOppB8,
+      pawnOppC8,
+      pawnOppD8,
+      pawnOppE8,
+      pawnOppF8,
+      pawnOppG8,
+      pawnOppH8,
+    ],
     [null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null],
@@ -63,10 +80,9 @@ const Board = () => {
           if (row[i] === 1) {
             row[i] = null;
           }
-          //                   FIX THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          //   if (row[i].danger === true) {
-          //     row[i].danger = false;
-          //   }
+          if (row[i] && row[i].danger === true) {
+            row[i].danger = false;
+          }
         }
         return row;
       }),
@@ -75,7 +91,7 @@ const Board = () => {
 
   const changeActivePiece = (spot, i, j) => {
     //CLICKING ON SAME PIECE
-    if (activePiece && activePiece.i == i && activePiece.j == j) {
+    if (activePiece && activePiece.i === i && activePiece.j === j) {
       setActivePiece(null);
       //REMOVING ALL 1'S FROM THE MATRIX
 
@@ -108,6 +124,7 @@ const Board = () => {
     //SETTING OLD SPOT TO NULL
     temp[activePiece.i][activePiece.j] = null;
     //SETTING NEW SPOT TO THE PIECE
+    temp[i][j] = null;
     temp[i][j] = activePiece;
     //SETTING THE BOARD
     setBoardArr([...temp]);
@@ -128,10 +145,13 @@ const Board = () => {
               return (
                 <div
                   onClick={() => {
-                    if (spot && spot.color == "#dfdfdf") {
+                    if (spot && spot.color === "#dfdfdf") {
                       changeActivePiece(spot, i, j);
                     }
-                    if (spot === 1 && activePiece) {
+                    if (
+                      (spot === 1 || (spot && spot.danger === true)) &&
+                      activePiece
+                    ) {
                       moveActivePiece(i, j);
                     }
                   }}
@@ -141,7 +161,7 @@ const Board = () => {
                   id={spot === 1 || (spot && spot.danger) ? "green" : ""}
                   key={j}
                 >
-                  {spot && spot != 1 && (
+                  {spot && spot !== 1 && (
                     <spot.image
                       size={"60px"}
                       style={{ color: spot.color }}
