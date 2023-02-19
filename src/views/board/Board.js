@@ -12,41 +12,44 @@ const Board = () => {
   const queenUser = queen("#dfdfdf");
   const kingUser = king("#dfdfdf");
 
-  const pawnOppA8 = pawn("#565352");
-  const pawnOppB8 = pawn("#565352");
-  const pawnOppC8 = pawn("#565352");
-  const pawnOppD8 = pawn("#565352");
-  const pawnOppE8 = pawn("#565352");
-  const pawnOppF8 = pawn("#565352");
-  const pawnOppG8 = pawn("#565352");
-  const pawnOppH8 = pawn("#565352");
+  const pawnOppA7 = pawn("#565352");
+  const pawnOppB7 = pawn("#565352");
+  const pawnOppC7 = pawn("#565352");
+  const pawnOppD7 = pawn("#565352");
+  const pawnOppE7 = pawn("#565352");
+  const pawnOppF7 = pawn("#565352");
+  const pawnOppG7 = pawn("#565352");
+  const pawnOppH7 = pawn("#565352");
 
-  const rookOpp = rook("#565352");
-  const bishopOpp = bishop("#565352");
-  const knightOpp = knight("#565352");
+  const rookOppA8 = rook("#565352");
+  const rookOppH8 = rook("#565352");
+  const knightOppB8 = knight("#565352");
+  const knightOppG8 = knight("#565352");
+  const bishopOppC8 = bishop("#565352");
+  const bishopOppF8 = bishop("#565352");
   const queenOpp = queen("#565352");
   const kingOpp = king("#565352");
 
   const [boardArr, setBoardArr] = useState([
     [
-      rookOpp,
-      knightOpp,
-      bishopOpp,
+      rookOppA8,
+      knightOppB8,
+      bishopOppC8,
       queenOpp,
       kingOpp,
-      bishopOpp,
-      knightOpp,
-      rookOpp,
+      bishopOppF8,
+      knightOppG8,
+      rookOppH8,
     ],
     [
-      pawnOppA8,
-      pawnOppB8,
-      pawnOppC8,
-      pawnOppD8,
-      pawnOppE8,
-      pawnOppF8,
-      pawnOppG8,
-      pawnOppH8,
+      pawnOppA7,
+      pawnOppB7,
+      pawnOppC7,
+      pawnOppD7,
+      pawnOppE7,
+      pawnOppF7,
+      pawnOppG7,
+      pawnOppH7,
     ],
     [null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null],
@@ -119,7 +122,6 @@ const Board = () => {
   };
   // MOVING PIECE
   const moveActivePiece = (i, j) => {
-    console.log(activePiece);
     let temp = [...boardArr];
     //SETTING OLD SPOT TO NULL
     temp[activePiece.i][activePiece.j] = null;
