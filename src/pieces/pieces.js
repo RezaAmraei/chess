@@ -228,15 +228,60 @@ export const queen = (color) => {
     danger: false,
   };
 };
-// ---------------------------------------------------------------------------------------------
+// --------------------------------------KING------------------------------------------------
+const kingCanMove = (arr, i, j) => {
+  const oneRowDown = arr[i + 1];
+  const oneRowUp = arr[i - 1];
+  const sameRow = arr[i];
+  //ANY MOVEMENT GOING UP
+  if (oneRowUp) {
+    //straight up
+    if (oneRowUp[j] === null) arr[i - 1][j] = 1;
+    else if (oneRowUp[j].color === "#565352") arr[i - 1][j].danger = true;
+    //up left
+    if (oneRowUp[j - 1] === null) arr[i - 1][j - 1] = 1;
+    else if (oneRowUp[j - 1] && oneRowUp[j - 1].color === "#565352")
+      arr[i - 1][j - 1].danger = true;
+    //up right
+    if (oneRowUp[j + 1] === null) arr[i - 1][j + 1] = 1;
+    else if (oneRowUp[j + 1] && oneRowUp[j + 1].color === "#565352")
+      arr[i - 1][j + 1].danger = true;
+  }
+  //ANY MOVEMENT GOING UP
+  if (oneRowDown) {
+    //straight down
+    if (oneRowDown[j] === null) arr[i + 1][j] = 1;
+    else if (oneRowDown[j].color === "#565352") arr[i + 1][j].danger = true;
+    //down left
+    if (oneRowDown[j - 1] === null) arr[i + 1][j - 1] = 1;
+    else if (oneRowDown[j - 1] && oneRowDown[j - 1].color === "#565352")
+      arr[i + 1][j - 1].danger = true;
+    //down right
+    if (oneRowDown[j + 1] === null) arr[i + 1][j + 1] = 1;
+    else if (oneRowDown[j + 1] && oneRowDown[j + 1].color === "#565352")
+      arr[i + 1][j + 1].danger = true;
+  }
+  //LEFT
+  if (j - 1 >= 0) {
+    if (sameRow[j - 1] === null) arr[i][j - 1] = 1;
+    else if (sameRow[j - 1].color === "#565352") arr[i][j - 1].danger = true;
+  }
+  //RIGHT
+  if (j + 1 >= 0) {
+    if (sameRow[j + 1] === null) arr[i][j + 1] = 1;
+    else if (sameRow[j + 1].color === "#565352") arr[i][j + 1].danger = true;
+  }
+  return [...arr];
+};
 export const king = (color) => {
   return {
     name: "king",
     color: color,
     image: FaChessKing,
+    determineMovement: kingCanMove,
   };
 };
-// ---------------------------------------------------------------------------------------------
+// --------------------------------------ROOK---------------------------------------------
 export const rook = (color) => {
   return {
     name: "rook",
@@ -246,7 +291,7 @@ export const rook = (color) => {
     determineMovement: canMoveHorizontalAndVertical,
   };
 };
-// ---------------------------------------------------------------------------------------------
+// -------------------------------------BISHOP-----------------------------------------------
 export const bishop = (color) => {
   return {
     name: "bishop",
@@ -263,22 +308,48 @@ const canKnightMove = (arr, i, j) => {
   if (arr[i - 2]) {
     //top left
     if (arr[i - 2][j - 1] === null) arr[i - 2][j - 1] = 1;
-    if (arr[i - 2][j - 1].color === "#565352") arr[i - 2][j - 1].danger = true;
+    else if (arr[i - 2][j - 1] && arr[i - 2][j - 1].color === "#565352")
+      arr[i - 2][j - 1].danger = true;
     //top right
     if (arr[i - 2][j + 1] === null) arr[i - 2][j + 1] = 1;
-    if (arr[i - 2][j + 1].color === "#565352") arr[i - 2][j + 1].danger = true;
+    else if (arr[i - 2][j + 1] && arr[i - 2][j + 1].color === "#565352")
+      arr[i - 2][j + 1].danger = true;
   }
   //BOTTOM CHECK
   if (arr[i + 2]) {
-    //top left
+    //bottom left
     if (arr[i + 2][j - 1] === null) arr[i + 2][j - 1] = 1;
-    if (arr[i + 2][j - 1].color === "#565352") arr[i + 2][j - 1].danger = true;
-    //top right
+    else if (arr[i + 2][j - 1] && arr[i + 2][j - 1].color === "#565352")
+      arr[i + 2][j - 1].danger = true;
+    //bottom right
     if (arr[i + 2][j + 1] === null) arr[i + 2][j + 1] = 1;
-    if (arr[i + 2][j + 1].color === "#565352") arr[i + 2][j + 1].danger = true;
+    else if (arr[i + 2][j + 1] && arr[i + 2][j + 1].color === "#565352")
+      arr[i + 2][j + 1].danger = true;
   }
   //RIGHT CHECK
+  if (arr[i + 1] && arr[i - 1] && arr[i][j + 2] !== undefined) {
+    //right up
+    if (arr[i + 1][j + 2] === null) arr[i + 1][j + 2] = 1;
+    else if (arr[i + 1][j + 2].color === "#565352")
+      arr[i + 1][j + 2].danger = true;
+    // right down
+    if (arr[i - 1][j + 2] === null) arr[i - 1][j + 2] = 1;
+    else if (arr[i - 1][j + 2].color === "#565352")
+      arr[i - 1][j + 2].danger = true;
+  }
+
   //LEFT CHECK
+
+  if (arr[i + 1] && arr[i - 1] && arr[i][j - 2] !== undefined) {
+    //right up
+    if (arr[i + 1][j - 2] === null) arr[i + 1][j - 2] = 1;
+    else if (arr[i + 1][j - 2].color === "#565352")
+      arr[i + 1][j - 2].danger = true;
+    // right down
+    if (arr[i - 1][j - 2] === null) arr[i - 1][j - 2] = 1;
+    else if (arr[i - 1][j - 2].color === "#565352")
+      arr[i - 1][j - 2].danger = true;
+  }
   return [...arr];
 };
 export const knight = (color) => {
