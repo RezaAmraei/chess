@@ -23,6 +23,7 @@ export const pawn = (color) => {
     image: FaChessPawn,
     determineMovement: pawnCanMove,
     danger: false,
+    moveCount: 0,
   };
 };
 // ---------------------------------------------------------------------------------------------
@@ -39,6 +40,7 @@ export const queen = (color) => {
     image: FaChessQueen,
     determineMovement: queenCanMove,
     danger: false,
+    moveCount: 0,
   };
 };
 // --------------------------------------KING------------------------------------------------
@@ -58,6 +60,7 @@ export const rook = (color) => {
     color: color,
     image: FaChessRook,
     danger: false,
+    moveCount: 0,
     determineMovement: canMoveHorizontalAndVertical,
   };
 };
@@ -68,6 +71,7 @@ export const bishop = (color) => {
     color: color,
     image: FaChessBishop,
     danger: false,
+    moveCount: 0,
     determineMovement: canMoveDiagonal,
   };
 };
@@ -78,6 +82,7 @@ export const knight = (color) => {
     color: color,
     image: FaChessKnight,
     danger: false,
+    moveCount: 0,
     determineMovement: canKnightMove,
   };
 };
